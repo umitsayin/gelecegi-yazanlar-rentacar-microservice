@@ -6,3 +6,4 @@
  * Java 17
  * PostgreSQL
  * Docker
+ * ModelMapper
