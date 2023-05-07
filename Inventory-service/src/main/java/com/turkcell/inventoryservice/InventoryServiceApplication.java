@@ -2,15 +2,13 @@ package com.turkcell.inventoryservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
-import java.util.UUID;
-
+@EnableDiscoveryClient
 @SpringBootApplication
 public class InventoryServiceApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(InventoryServiceApplication.class, args);
-		System.out.println(UUID.randomUUID());
 	}
-
 }

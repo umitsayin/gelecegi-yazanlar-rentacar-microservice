@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Getter
 @Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "brands")
@@ -23,6 +23,5 @@ public class Brand {
     private String name;
 
     @OneToMany(mappedBy = "brand")
-    private List<Model> models = new ArrayList<>();
+    private List<Model> models;
 }
-

@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Getter
 @Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "models")
@@ -22,9 +22,10 @@ public class Model {
     private UUID id;
     private String name;
 
-    @OneToMany(mappedBy = "model")
-    private List<Car> cars = new ArrayList<>();
-
     @ManyToOne
+    @JoinColumn(name = "brand_id")
     private Brand brand;
+
+    @OneToMany(mappedBy = "model")
+    private List<Car> cars;
 }
