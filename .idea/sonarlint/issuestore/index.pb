@@ -245,8 +245,6 @@ p
 @.idea/libraries/Maven__org_mongodb_mongodb_driver_sync_4_8_2.xml,2/2/226d947a4e40f9119f019e694468ebb9698950e5
 a
 1.idea/libraries/Maven__org_mongodb_bson_4_8_2.xml,4/2/42d31e2e87f2a7f7a39a90a5c750d20137adad84
-C
-filter-service/mvnw,3/b/3b30a67a6d0bd8ca39e2fa862be3669a8c40beb9
 I
 filter-service/.gitignore,e/7/e78f0811533806e96caad7beb4bbd19984ae3a1f
 w
@@ -285,8 +283,6 @@ rInventory-service/src/main/java/com/turkcell/inventoryservice/business/dto/requ
 cdiscovery-service/src/test/java/com/turkcell/discoveryservice/DiscoveryServiceApplicationTests.java,a/3/a37b670f1f1351bd6e8d8d5c30496d70c72b7897
 n
 >filter-service/src/main/java/com/turkcell/entities/Filter.java,1/f/1f2e7d64bf4d31227a31618e4e766f61724c16f2
-ä
-Zfilter-service/src/test/java/com/turkcell/filterservice/FilterServiceApplicationTests.java,4/d/4d9fb2164b43e5986e00b1cd26b17d23ad50e591
 Å
 QInventory-service/src/main/java/com/turkcell/inventoryservice/entities/Model.java,5/4/5495feb3e35ca46292dede0e7205ba5617706c7f
 î
@@ -305,10 +301,6 @@ bInventory-service/src/main/java/com/turkcell/inventoryservice/business/abstract
 ecommon-package/src/main/java/com/turkcell/commonpackage/utils/annotations/NotFutureYearValidator.java,d/d/dd7914cd13f95638a9daf252a4705f0247809f53
 I
 discovery-service/pom.xml,7/e/7e2a93dc15928a8ab4dff670d6d413b0a1b7e7b7
-F
-filter-service/pom.xml,f/4/f4433ac441207f2b13a105bf3f56a7c2953c5a9a
-I
-Inventory-service/pom.xml,c/4/c43457ba6bc33d1bb8b6eeb7b612ff52aa813822
 Ç
 Rcommon-package/src/main/java/com/turkcell/commonpackage/utils/constants/Regex.java,6/2/628b7cabcfbf8ad6089486196de1ca2da17eefab
 †

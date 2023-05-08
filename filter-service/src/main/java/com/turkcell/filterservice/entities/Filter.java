@@ -9,13 +9,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.UUID;
 
-@Getter
 @Setter
+@Getter
 @Document
 @NoArgsConstructor
 @AllArgsConstructor
 public class Filter {
-
     @Id
     private UUID id;
     private UUID carId;

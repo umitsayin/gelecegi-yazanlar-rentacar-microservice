@@ -5,8 +5,6 @@ spring:
     mongodb:
       database: filterdb-t1
       uri: mongodb://localhost:27017
-      username: turkcell
-      password: 12345
 eureka:
   client:
     fetch-registry: true
