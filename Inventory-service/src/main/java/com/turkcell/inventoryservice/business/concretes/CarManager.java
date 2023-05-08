@@ -1,5 +1,7 @@
 package com.turkcell.inventoryservice.business.concretes;
 
+import com.turkcell.commonpackage.event.inventory.CarCreatedEvent;
+import com.turkcell.commonpackage.event.inventory.CarDeletedEvent;
 import com.turkcell.commonpackage.utils.mappers.ModelMapperService;
 import com.turkcell.inventoryservice.business.abstracts.CarService;
 import com.turkcell.inventoryservice.business.dto.requests.create.CreateCarRequest;
@@ -11,6 +13,7 @@ import com.turkcell.inventoryservice.business.dto.responses.update.UpdateCarResp
 import com.turkcell.inventoryservice.business.rules.CarBusinessRules;
 import com.turkcell.inventoryservice.entities.Car;
 import com.turkcell.inventoryservice.entities.enums.State;
+import com.turkcell.inventoryservice.kafka.producer.InventoryProducer;
 import com.turkcell.inventoryservice.repository.CarRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,6 +27,7 @@ public class CarManager implements CarService {
     private final CarRepository repository;
     private final ModelMapperService mapper;
     private final CarBusinessRules rules;
+    private final InventoryProducer producer;
 
     @Override
     public List<GetAllCarsResponse> getAll() {
@@ -48,20 +52,24 @@ public class CarManager implements CarService {
     @Override
     public CreateCarResponse add(CreateCarRequest request) {
         var car = mapper.forRequest().map(request, Car.class);
-        car.setId(null);
+        car.setId(UUID.randomUUID());
         car.setState(State.Available);
-        repository.save(car);
-        var response = mapper.forResponse().map(car, CreateCarResponse.class);
 
+        var createdCar = repository.save(car);
+        sendCreatedCarMessage(createdCar);
+
+        var response = mapper.forResponse().map(createdCar, CreateCarResponse.class);
         return response;
     }
 
     @Override
     public UpdateCarResponse update(UUID id, UpdateCarRequest request) {
         rules.checkIfCarExists(id);
+
         var car = mapper.forRequest().map(request, Car.class);
         car.setId(id);
         repository.save(car);
+
         var response = mapper.forResponse().map(car, UpdateCarResponse.class);
 
         return response;
@@ -71,5 +79,16 @@ public class CarManager implements CarService {
     public void delete(UUID id) {
         rules.checkIfCarExists(id);
         repository.deleteById(id);
+
+        sendDeletedCarMessage(id);
+    }
+
+    private void sendDeletedCarMessage(UUID carId){
+        producer.sendMessage(new CarDeletedEvent(carId));
+    }
+
+    private void sendCreatedCarMessage(Car createdCar){
+        var event = mapper.forResponse().map(createdCar, CarCreatedEvent.class);
+        producer.sendMessage(event);
     }
 }

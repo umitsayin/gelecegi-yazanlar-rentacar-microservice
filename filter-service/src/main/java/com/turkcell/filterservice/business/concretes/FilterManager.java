@@ -45,12 +45,20 @@ public class FilterManager implements FilterService {
 
     @Override
     public void delete(UUID id) {
-        repository.deleteById(id);
+        if(!repository.existsByCarId(id)){
+            throw new RuntimeException("CarNotFound");
+        }
+
+        repository.deleteByCarId(id);
     }
 
     @Override
     public void deleteAllByBrandId(UUID brandId) {
+        if(!repository.existsByBrandId(brandId)){
+            throw new RuntimeException("CarNotFound");
+        }
 
+        repository.deleteAllByBrandId(brandId);
     }
 
     @Override

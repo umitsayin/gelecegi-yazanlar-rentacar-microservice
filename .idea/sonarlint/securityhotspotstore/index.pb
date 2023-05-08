@@ -63,8 +63,6 @@ aInventory-service/src/main/java/com/turkcell/inventoryservice/api/controllers/C
 pInventory-service/src/main/java/com/turkcell/inventoryservice/business/dto/requests/update/UpdateCarRequest.java,d/0/d07b6cd475878c50d7a38cfe29bcc2c999990607
 g
 7discovery-service/.mvn/wrapper/maven-wrapper.properties,b/7/b7cd28bd3ef9b465be01ad7016b947006689ebb3
-I
-discovery-service/pom.xml,7/e/7e2a93dc15928a8ab4dff670d6d413b0a1b7e7b7
 ê
 `Inventory-service/src/main/java/com/turkcell/inventoryservice/business/abstracts/CarService.java,8/7/87bc99e3027862c1e0ae66c4e94dcb03cc022f4c
 J
@@ -81,14 +79,10 @@ bInventory-service/src/main/java/com/turkcell/inventoryservice/business/concrete
 Q.idea/sonarlint/securityhotspotstore/a/b/ab3c282963c921039e96a26d082183918fe83f7c,3/6/36e443ea3b1fac93beb7a412f6a7409ad3fb71ab
 ì
 cInventory-service/src/main/java/com/turkcell/inventoryservice/api/controllers/ModelsController.java,3/2/32c0449b538d9d0e999d4fd0d89f71cd502b3074
-í
-bInventory-service/src/main/java/com/turkcell/inventoryservice/business/concretes/BrandManager.java,0/7/074501d09eb813afc2ac2fa045db637505cacecd
 u
 E.idea/libraries/Maven__com_fasterxml_woodstox_woodstox_core_6_5_0.xml,4/0/40fc0f1ca6b1f9982281f975a9438976e64fcaf8
 â
 Y.idea/libraries/Maven__com_fasterxml_jackson_dataformat_jackson_dataformat_xml_2_14_2.xml,9/9/99e577bffa33192f561780190700cf5cbea00fd6
-ê
-`Inventory-service/src/main/java/com/turkcell/inventoryservice/business/concretes/CarManager.java,0/1/016968d1c5ad0216b310f05df25fb27f0b08b7df
 \
 ,.idea/libraries/Maven__antlr_antlr_2_7_7.xml,7/4/74a68c8173eaa4e121c7c4dd11baec456d5046b1
 ¢
@@ -297,13 +291,3 @@ w
 G.idea/sonarlint/issuestore/8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d,b/4/b4a0b63ce8560bbc5de0f9995c20cc861dc2adb3
 Å
 Q.idea/sonarlint/securityhotspotstore/8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d,1/0/10a03f31c4dce92cb371e761ce9429428bb6c176
-ç
-]common-package/src/main/java/com/turkcell/commonpackage/utils/mappers/ModelMapperService.java,2/3/233970f37f1cb24ee43a4080e111a97537a8ec20
-Å
-QInventory-service/src/main/java/com/turkcell/inventoryservice/entities/Model.java,5/4/5495feb3e35ca46292dede0e7205ba5617706c7f
-
-OInventory-service/src/main/java/com/turkcell/inventoryservice/entities/Car.java,1/a/1a8cbf1872ee00ea2361cbf85dd2e6237f60733b
-†
-pInventory-service/src/main/java/com/turkcell/inventoryservice/business/dto/requests/create/CreateCarRequest.java,9/a/9ad19da55153b3867d22f577404723b775fc8947
-Å
-QInventory-service/src/main/java/com/turkcell/inventoryservice/entities/Brand.java,1/f/1fd1451532cafd06f1afb8919d182a694150a9ff
