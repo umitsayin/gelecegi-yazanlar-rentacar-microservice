@@ -1,5 +1,11 @@
 version: '3.8'
 services:
+  kafka:
+    image: bashj79/kafka-kraft
+    ports:
+      - "9092:9092"
+    volumes:
+      - kafka_data:/opt/kafka/kafka-logs
   mongodb:
     container_name: filter-db-dev
     image: mongo
@@ -10,4 +16,8 @@ services:
       MONGO_INITDB_ROOT_USERNAME: "turkcell"
       MONGO_INITDB_ROOT_PASSWORD: "12345"
     volumes:
-      - "/data/db/"
+      - mongodb_data:/data/db
+
+volumes:
+  kafka_data:
+  mongodb_data:
