@@ -16,6 +16,7 @@ import com.turkcell.inventoryservice.entities.enums.State;
 import com.turkcell.inventoryservice.kafka.producer.InventoryProducer;
 import com.turkcell.inventoryservice.repository.CarRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
