@@ -2,9 +2,9 @@ spring:
     application:
         name: inventory-service
     datasource:
-            password: postgres
-            url: jdbc:postgresql://localhost:5432/t1-inventory-service
-            username: postgres
+        password: postgres
+        url: jdbc:postgresql://localhost:5432/t1-inventory-service
+        username: postgres
     jpa:
         properties:
             hibernate:
@@ -12,10 +12,20 @@ spring:
         hibernate:
             ddl-auto: update
     kafka:
-      producer:
-          bootstrap-servers: http://localhost:9092
-          key-serializer: org.apache.kafka.common.serialization.StringSerializer
-          value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+        producer:
+            bootstrap-servers: http://localhost:9092
+            key-serializer: org.apache.kafka.common.serialization.StringSerializer
+            value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+        consumer:
+            auto-offset-reset: earliest
+            bootstrap-servers: localhost:9092
+            key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+            properties:
+                spring:
+                    json:
+                        trusted:
+                            packages: "*"
+            value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
 eureka:
     client:
         fetch-registry: true

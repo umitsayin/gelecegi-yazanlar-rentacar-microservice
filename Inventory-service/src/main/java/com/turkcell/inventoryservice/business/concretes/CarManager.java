@@ -2,6 +2,7 @@ package com.turkcell.inventoryservice.business.concretes;
 
 import com.turkcell.commonpackage.event.inventory.CarCreatedEvent;
 import com.turkcell.commonpackage.event.inventory.CarDeletedEvent;
+import com.turkcell.commonpackage.utils.kafka.producer.KafkaProducer;
 import com.turkcell.commonpackage.utils.mappers.ModelMapperService;
 import com.turkcell.inventoryservice.business.abstracts.CarService;
 import com.turkcell.inventoryservice.business.dto.requests.create.CreateCarRequest;
@@ -28,7 +29,7 @@ public class CarManager implements CarService {
     private final CarRepository repository;
     private final ModelMapperService mapper;
     private final CarBusinessRules rules;
-    private final InventoryProducer producer;
+    private final KafkaProducer producer;
 
     @Override
     public List<GetAllCarsResponse> getAll() {
@@ -84,12 +85,23 @@ public class CarManager implements CarService {
         sendDeletedCarMessage(id);
     }
 
+    @Override
+    public void checkIfCarAvailable(UUID id) {
+        rules.checkIfCarExists(id);
+        rules.checkCarAvailability(id);
+    }
+
+    @Override
+    public void changeStateByCarId(State state, UUID id) {
+        repository.changeStateByCarId(state, id);
+    }
+
     private void sendDeletedCarMessage(UUID carId){
-        producer.sendMessage(new CarDeletedEvent(carId));
+        producer.sendMessage("car-deleted",new CarDeletedEvent(carId));
     }
 
     private void sendCreatedCarMessage(Car createdCar){
         var event = mapper.forResponse().map(createdCar, CarCreatedEvent.class);
-        producer.sendMessage(event);
+        producer.sendMessage("car-created",event);
     }
 }
