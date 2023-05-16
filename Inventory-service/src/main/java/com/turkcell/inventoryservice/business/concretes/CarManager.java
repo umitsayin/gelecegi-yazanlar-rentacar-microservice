@@ -97,7 +97,6 @@ public class CarManager implements CarService {
     @Override
     public void changeStateByCarId(State state, UUID id) {
         repository.changeStateByCarId(state, id);
-        producer.sendMessage("rental-deleted",new RentalDeletedEvent(id));
     }
 
     private void sendDeletedCarMessage(UUID carId){
