@@ -28,7 +28,6 @@ public class RentalManager implements RentalService {
     private final RentalRepository repository;
     private final ModelMapperService mapper;
     private final RentalBusinessRules rules;
-    private final CarClient carClient;
     private final KafkaProducer producer;
 
     @Override
@@ -53,13 +52,16 @@ public class RentalManager implements RentalService {
 
     @Override
     public CreateRentalResponse add(CreateRentalRequest request) {
-        carClient.checkIfCarAvailable(request.getCarId());
+        rules.ensureCarIsAvailable(request.getCarId());
+
         var rental = mapper.forRequest().map(request, Rental.class);
         rental.setId(null);
         rental.setTotalPrice(getTotalPrice(rental));
         rental.setRentedAt(LocalDate.now());
         repository.save(rental);
+
         sendKafkaRentalCreatedEvent(request.getCarId());
+
         var response = mapper.forResponse().map(rental, CreateRentalResponse.class);
 
         return response;
@@ -79,8 +81,7 @@ public class RentalManager implements RentalService {
     @Override
     public void delete(UUID id) {
         rules.checkIfRentalExists(id);
-        var carId = repository.findById(id).orElseThrow().getCarId();
-        producer.sendMessage("rental-deleted",new RentalDeletedEvent(carId));
+        sendKafkaRentalDeletedEvent(id);
         repository.deleteById(id);
     }
 
@@ -90,5 +91,10 @@ public class RentalManager implements RentalService {
 
     private void sendKafkaRentalCreatedEvent(UUID carId) {
         producer.sendMessage("rental-created",new RentalCreatedEvent(carId));
+    }
+
+    private void sendKafkaRentalDeletedEvent(UUID id) {
+        var carId = repository.findById(id).orElseThrow().getCarId();
+        producer.sendMessage("rental-deleted",new RentalDeletedEvent(carId));
     }
 }

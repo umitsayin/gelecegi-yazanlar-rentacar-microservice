@@ -2,6 +2,9 @@ package com.turkcell.inventoryservice.business.concretes;
 
 import com.turkcell.commonpackage.event.inventory.CarCreatedEvent;
 import com.turkcell.commonpackage.event.inventory.CarDeletedEvent;
+import com.turkcell.commonpackage.event.rental.RentalDeletedEvent;
+import com.turkcell.commonpackage.utils.dto.ClientResponse;
+import com.turkcell.commonpackage.utils.exceptions.BusinessException;
 import com.turkcell.commonpackage.utils.kafka.producer.KafkaProducer;
 import com.turkcell.commonpackage.utils.mappers.ModelMapperService;
 import com.turkcell.inventoryservice.business.abstracts.CarService;
@@ -14,10 +17,8 @@ import com.turkcell.inventoryservice.business.dto.responses.update.UpdateCarResp
 import com.turkcell.inventoryservice.business.rules.CarBusinessRules;
 import com.turkcell.inventoryservice.entities.Car;
 import com.turkcell.inventoryservice.entities.enums.State;
-import com.turkcell.inventoryservice.kafka.producer.InventoryProducer;
 import com.turkcell.inventoryservice.repository.CarRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -86,14 +87,17 @@ public class CarManager implements CarService {
     }
 
     @Override
-    public void checkIfCarAvailable(UUID id) {
-        rules.checkIfCarExists(id);
-        rules.checkCarAvailability(id);
+    public ClientResponse checkIfCarAvailable(UUID id) {
+        var response= new ClientResponse();
+        validateCarAvailability(id, response);
+
+        return response;
     }
 
     @Override
     public void changeStateByCarId(State state, UUID id) {
         repository.changeStateByCarId(state, id);
+        producer.sendMessage("rental-deleted",new RentalDeletedEvent(id));
     }
 
     private void sendDeletedCarMessage(UUID carId){
@@ -103,5 +107,16 @@ public class CarManager implements CarService {
     private void sendCreatedCarMessage(Car createdCar){
         var event = mapper.forResponse().map(createdCar, CarCreatedEvent.class);
         producer.sendMessage("car-created",event);
+    }
+
+    private void validateCarAvailability(UUID id, ClientResponse response) {
+        try {
+            rules.checkIfCarExists(id);
+            rules.checkCarAvailability(id);
+            response.setSuccess(true);
+        } catch (BusinessException exception) {
+            response.setSuccess(false);
+            response.setMessage(exception.getMessage());
+        }
     }
 }

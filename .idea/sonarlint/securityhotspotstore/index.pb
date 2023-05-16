@@ -51,8 +51,6 @@ rInventory-service/src/main/java/com/turkcell/inventoryservice/business/dto/resp
 ]Inventory-service/src/main/java/com/turkcell/inventoryservice/repository/ModelRepository.java,4/b/4bb104f90438498bdb709d5f981ede09b95c7825
 ¢
 rInventory-service/src/main/java/com/turkcell/inventoryservice/business/dto/responses/get/GetAllBrandsResponse.java,3/e/3eb46cbb9eb2fd9fd543285dfc0988f6b9c09aba
-ë
-aInventory-service/src/main/java/com/turkcell/inventoryservice/api/controllers/CarsController.java,a/d/ad8733a3bd71be36599c48d3fb7506bfdc1ac605
 †
 pInventory-service/src/main/java/com/turkcell/inventoryservice/business/dto/requests/update/UpdateCarRequest.java,d/0/d07b6cd475878c50d7a38cfe29bcc2c999990607
 g
@@ -273,8 +271,6 @@ w
 G.idea/sonarlint/issuestore/8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d,b/4/b4a0b63ce8560bbc5de0f9995c20cc861dc2adb3
 Å
 Q.idea/sonarlint/securityhotspotstore/8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d,1/0/10a03f31c4dce92cb371e761ce9429428bb6c176
-é
-^discovery-service/src/main/java/com/turkcell/discoveryservice/DiscoveryServiceApplication.java,4/a/4a43b29784ff0f9385a9b4fae469f51d2898913c
 I
 docker/docker-compose.yml,3/f/3fe733692645251b38d6ef0a55b2d48c3a1cf387
 w
@@ -847,8 +843,6 @@ Q.idea/sonarlint/securityhotspotstore/e/0/e06d0ab40ddaf08510a32e0a5afc5c79b8355e
 Q.idea/sonarlint/securityhotspotstore/d/0/d07b6cd475878c50d7a38cfe29bcc2c999990607,2/a/2a3546e4765dea0523990bf313bef6063536a933
 Å
 Q.idea/sonarlint/securityhotspotstore/c/7/c76131110d3673c4d47674a5f360ca4ec9104360,5/5/557a81e350db2ac3d2567db133f2fc7376324b20
-|
-Lapi-gateway/src/main/java/com/turkcell/apigateway/ApiGatewayApplication.java,e/0/e08390a65de809a80c497f5afd0677d34bffcb22
 ä
 Zfilter-service/src/test/java/com/turkcell/filterservice/FilterServiceApplicationTests.java,4/d/4d9fb2164b43e5986e00b1cd26b17d23ad50e591
 p
@@ -883,12 +877,8 @@ QInventory-service/src/main/java/com/turkcell/inventoryservice/entities/Brand.ja
 ]common-package/src/main/java/com/turkcell/commonpackage/utils/mappers/ModelMapperService.java,2/3/233970f37f1cb24ee43a4080e111a97537a8ec20
 ö
 jcommon-package/src/main/java/com/turkcell/commonpackage/utils/exceptions/EntityAlreadyExistsException.java,6/6/664c6639718b5417c6611c1aed425882495e6cd2
-Ö
-Ufilter-service/src/main/java/com/turkcell/filterservice/FilterServiceApplication.java,b/6/b654b0213fbc67564d3edd71a4201237b51ccd60
 è
 _common-package/src/main/java/com/turkcell/commonpackage/utils/exceptions/BusinessException.java,e/f/efa1eb4da6f6dbdb2047bf32853a4ccca8b1d1f0
-é
-^Inventory-service/src/main/java/com/turkcell/inventoryservice/InventoryServiceApplication.java,d/b/db37fb5c3ebd85a50a2b962ce8a4fe113a04e470
 ï
 ecommon-package/src/main/java/com/turkcell/commonpackage/utils/exceptions/EntityNotFoundException.java,c/d/cd282ffb0db415afc1f37d87e56e955e9f62e6b1
 è
@@ -907,8 +897,6 @@ C
 api-gateway/pom.xml,2/b/2bfa2b108f2439e99e004f4085b58c22cf995f73
 I
 discovery-service/pom.xml,7/e/7e2a93dc15928a8ab4dff670d6d413b0a1b7e7b7
-ì
-cInventory-service/src/main/java/com/turkcell/inventoryservice/kafka/producer/InventoryProducer.java,7/4/748fd38f390023fde6038eb7a7d48bcd5062904f
 î
 dInventory-service/src/main/java/com/turkcell/inventoryservice/business/rules/ModelBusinessRules.java,c/5/c52685cae0b92952d90c8ae2794289db72fae50f
 í

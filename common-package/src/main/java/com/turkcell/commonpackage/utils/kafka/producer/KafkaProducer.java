@@ -10,16 +10,17 @@ import org.springframework.messaging.support.MessageBuilder;
 
 @Slf4j
 @RequiredArgsConstructor
-public class KafkaProducer{
+public class KafkaProducer {
     private final KafkaTemplate<String, Object> kafkaTemplate;
 
-    public <T extends Event> void sendMessage(String topic, T event){
-        log.info(String.format("Event => %s",event.toString()));
+    public <T extends Event> void sendMessage(String topic, T event) {
+        log.info(String.format("%s event => %s", topic, event.toString()));
         Message<T> message = MessageBuilder
                 .withPayload(event)
-                .setHeader(KafkaHeaders.TOPIC,topic)
+                .setHeader(KafkaHeaders.TOPIC, topic)
                 .build();
 
         kafkaTemplate.send(message);
     }
 }
+
