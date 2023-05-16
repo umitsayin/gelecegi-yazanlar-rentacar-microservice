@@ -875,14 +875,8 @@ pInventory-service/src/main/java/com/turkcell/inventoryservice/business/dto/requ
 Lfilter-service/src/main/java/com/turkcell/filterservice/entities/Filter.java,d/1/d1d43e2da2fcb79e4d57282436a27285151fdb39
 
 OInventory-service/src/main/java/com/turkcell/inventoryservice/entities/Car.java,1/a/1a8cbf1872ee00ea2361cbf85dd2e6237f60733b
-ç
-]filter-service/src/main/java/com/turkcell/filterservice/business/abstracts/FilterService.java,e/a/ea553a8193440330da59c7bc10ed128dc59fa15f
 Å
 QInventory-service/src/main/java/com/turkcell/inventoryservice/entities/Brand.java,1/f/1fd1451532cafd06f1afb8919d182a694150a9ff
-ç
-]filter-service/src/main/java/com/turkcell/filterservice/business/concretes/FilterManager.java,c/9/c919ab2eb860dd56e96f079717b445a196ed36a6
-à
-Xfilter-service/src/main/java/com/turkcell/filterservice/repository/FilterRepository.java,8/7/87451fd34a43d9c4d262bc86d775e060d14ef8cf
 Å
 QInventory-service/src/main/java/com/turkcell/inventoryservice/entities/Model.java,5/4/5495feb3e35ca46292dede0e7205ba5617706c7f
 ç
