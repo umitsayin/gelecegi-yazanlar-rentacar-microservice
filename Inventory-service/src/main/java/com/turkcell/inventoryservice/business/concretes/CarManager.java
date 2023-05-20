@@ -2,7 +2,6 @@ package com.turkcell.inventoryservice.business.concretes;
 
 import com.turkcell.commonpackage.event.inventory.CarCreatedEvent;
 import com.turkcell.commonpackage.event.inventory.CarDeletedEvent;
-import com.turkcell.commonpackage.event.rental.RentalDeletedEvent;
 import com.turkcell.commonpackage.utils.dto.ClientResponse;
 import com.turkcell.commonpackage.utils.exceptions.BusinessException;
 import com.turkcell.commonpackage.utils.kafka.producer.KafkaProducer;
