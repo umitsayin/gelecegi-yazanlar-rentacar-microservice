@@ -4,7 +4,7 @@ spring:
   datasource:
     username: root
     password: mysql
-    url: jdbc:mysql://localhost:3306/t1-maintenance-service
+    url: jdbc:mysql://localhost:3306/maintenance
   jpa:
     hibernate:
       ddl-auto: update

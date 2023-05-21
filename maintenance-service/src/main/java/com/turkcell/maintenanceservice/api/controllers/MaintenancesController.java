@@ -16,7 +16,7 @@ import java.util.UUID;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/api/maintenance")
+@RequestMapping("/api/maintenances")
 public class MaintenancesController {
     private final MaintenanceService service;
 
