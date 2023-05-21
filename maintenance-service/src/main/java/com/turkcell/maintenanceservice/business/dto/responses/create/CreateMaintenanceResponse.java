@@ -13,6 +13,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreateMaintenanceResponse {
+    private UUID id;
     private UUID carId;
     private String information;
     private boolean isCompleted;
