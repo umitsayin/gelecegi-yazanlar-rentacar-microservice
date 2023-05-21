@@ -20,9 +20,11 @@ public class Messages {
         public static final String INVOICE_NOT_FOUND = "Fatura bulunamadı!";
     }
 
-    public static class Maintenance{
-        public static final String MAINTENANCE_NOT_FOUND = "Bakım bulunamadı!";
-        public static final String CAR_UNDER_THE_MAINTENANCE = "Araç şuanda bakımda!";
+    public static class Maintenance {
+        public static final String NotExists = "MAINTENANCE_NOT_EXISTS";
+        public static final String CarExists = "CAR_IS_CURRENTLY_UNDER_MAINTENANCE";
+        public static final String CarNotExists = "CAR_NOT_REGISTERED_FOR_MAINTENANCE";
+        public static final String CarIsRented = "CAR_IS_CURRENTLY_RENTED_AND_CANNOT_BE_SERVICED_FOR_MAINTENANCE";
     }
 
     public static class Model{

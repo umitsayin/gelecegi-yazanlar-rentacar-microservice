@@ -14,4 +14,8 @@ public class Paths {
     public static class RentalService{
         public static final String SERVICE_BASE_PACKAGE = "com.turkcell.rentalservice";
     }
+
+    public static final class Maintenance{
+        public static final String MAINTENANCE_BASE_PACKAGE = "com.turkcell.maintenanceservice";
+    }
 }
