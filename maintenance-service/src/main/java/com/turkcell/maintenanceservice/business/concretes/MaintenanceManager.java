@@ -105,11 +105,11 @@ public class MaintenanceManager implements MaintenanceService {
     }
 
     private void sendKafkaMaintenanceCreatedEvent(UUID carId){
-        producer.sendMessage("maintenance-created-event",new MaintenanceCreatedEvent(carId));
+        producer.sendMessage("maintenance-created",new MaintenanceCreatedEvent(carId));
     }
 
     private void sendKafkaMaintenanceDeletedEvent(UUID carId){
-        producer.sendMessage("maintenance-deleted-event", new MaintenanceDeletedEvent(carId));
+        producer.sendMessage("maintenance-deleted", new MaintenanceDeletedEvent(carId));
     }
 
 

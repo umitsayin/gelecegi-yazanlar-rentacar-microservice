@@ -22,7 +22,7 @@ public class MaintenanceConsumer {
     public void consume(MaintenanceCreatedEvent event) {
         // changer car state
         var filter = service.getByCarId(event.getCarId());
-        filter.setState("MAINTENANCE");
+        filter.setState("Maintenance");
         service.add(filter);
         log.info("Maintenance created event consumed {}", event);
     }
@@ -33,7 +33,7 @@ public class MaintenanceConsumer {
     public void consume(MaintenanceDeletedEvent event) {
         // changer car state
         var filter = service.getByCarId(event.getCarId());
-        filter.setState("AVAILABLE");
+        filter.setState("Available");
         service.add(filter);
         log.info("Maintenance deleted event consumed {}", event);
     }
