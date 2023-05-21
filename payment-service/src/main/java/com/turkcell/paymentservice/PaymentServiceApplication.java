@@ -1,9 +1,12 @@
 package com.turkcell.paymentservice;
 
+import com.turkcell.commonpackage.utils.constants.Paths;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
-@SpringBootApplication
+@EnableDiscoveryClient
+@SpringBootApplication(scanBasePackages = {Paths.CONFIGURATION_BASE_PACKAGE, Paths.Payment.ServiceBasePackage})
 public class PaymentServiceApplication {
 
     public static void main(String[] args) {

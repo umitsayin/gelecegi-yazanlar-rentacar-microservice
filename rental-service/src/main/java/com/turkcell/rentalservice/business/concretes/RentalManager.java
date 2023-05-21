@@ -58,6 +58,9 @@ public class RentalManager implements RentalService {
         rental.setId(null);
         rental.setTotalPrice(getTotalPrice(rental));
         rental.setRentedAt(LocalDate.now());
+        request.getPaymentRequest().setPrice(rental.getTotalPrice());
+
+        rules.processPayment(request.getPaymentRequest());
         repository.save(rental);
 
         sendKafkaRentalCreatedEvent(request.getCarId());
@@ -70,9 +73,11 @@ public class RentalManager implements RentalService {
     @Override
     public UpdateRentalResponse update(UUID id, UpdateRentalRequest request) {
         rules.checkIfRentalExists(id);
+
         var rental = mapper.forRequest().map(request, Rental.class);
         rental.setId(id);
         repository.save(rental);
+
         var response = mapper.forResponse().map(rental, UpdateRentalResponse.class);
 
         return response;

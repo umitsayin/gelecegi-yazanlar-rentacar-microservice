@@ -37,3 +37,6 @@ resilience4j:
       retry-rental-client:
         max-attempts: 5
         waitDuration: 10s
+      retry-payment-client:
+        max-attempts: 5
+        waitDuration: 10s
