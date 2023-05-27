@@ -1,36 +1,8 @@
 spring:
   application:
     name: maintenance-service
-  datasource:
-    username: root
-    password: mysql
-    url: jdbc:mysql://localhost:3306/maintenance
-  jpa:
-    hibernate:
-      ddl-auto: update
-  kafka:
-    producer:
-      bootstrap-servers: http://localhost:9092
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
   cloud:
-    openfeign:
-      circuitbreaker:
-        enabled: true
-eureka:
-  client:
-    fetch-registry: true
-    register-with-eureka: true
-    service-url:
-      defaultZone: http://localhost:8761/eureka
-  instance:
-    instance-id: ${spring.application.name}:${random.value}}
-    prefer-ip-address: true
-server:
-  port: 0
-resilience4j:
-  retry:
-    instances:
-      retry-maintenance:
-        max-attempts: 5
-        wait-duration: 30s
+    config:
+      profile: prod
+  config:
+    import: optional:configserver:http://localhost:8888
