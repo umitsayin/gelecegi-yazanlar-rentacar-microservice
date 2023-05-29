@@ -2,6 +2,8 @@ package com.turkcell.rentalservice.business.concretes;
 
 import com.turkcell.commonpackage.event.rental.RentalCreatedEvent;
 import com.turkcell.commonpackage.event.rental.RentalDeletedEvent;
+import com.turkcell.commonpackage.invoice.InvoiceCreatedEvent;
+import com.turkcell.commonpackage.utils.dto.GetCarResponse;
 import com.turkcell.commonpackage.utils.kafka.producer.KafkaProducer;
 import com.turkcell.commonpackage.utils.mappers.ModelMapperService;
 import com.turkcell.rentalservice.api.clients.CarClient;
@@ -19,6 +21,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -29,6 +32,7 @@ public class RentalManager implements RentalService {
     private final ModelMapperService mapper;
     private final RentalBusinessRules rules;
     private final KafkaProducer producer;
+    private final CarClient carClient;
 
     @Override
     public List<GetAllRentalsResponse> getAll() {
@@ -55,6 +59,7 @@ public class RentalManager implements RentalService {
         rules.ensureCarIsAvailable(request.getCarId());
 
         var rental = mapper.forRequest().map(request, Rental.class);
+        var car = carClient.getById(request.getCarId());
         rental.setId(null);
         rental.setTotalPrice(getTotalPrice(rental));
         rental.setRentedAt(LocalDate.now());
@@ -64,6 +69,7 @@ public class RentalManager implements RentalService {
         repository.save(rental);
 
         sendKafkaRentalCreatedEvent(request.getCarId());
+        sendKafkaInvoiceCreatedEvent(rental,car,request.getPaymentRequest().getCardHolder());
 
         var response = mapper.forResponse().map(rental, CreateRentalResponse.class);
 
@@ -101,5 +107,20 @@ public class RentalManager implements RentalService {
     private void sendKafkaRentalDeletedEvent(UUID id) {
         var carId = repository.findById(id).orElseThrow().getCarId();
         producer.sendMessage("rental-deleted",new RentalDeletedEvent(carId));
+    }
+
+    private void sendKafkaInvoiceCreatedEvent(Rental rental, GetCarResponse carResponse, String cardHolder){
+        InvoiceCreatedEvent invoiceCreatedEvent = new InvoiceCreatedEvent();
+        invoiceCreatedEvent.setCardHolder(cardHolder);
+        invoiceCreatedEvent.setModelName(carResponse.getModelName());
+        invoiceCreatedEvent.setBrandName(carResponse.getBrandName());
+        invoiceCreatedEvent.setPlate(carResponse.getPlate());
+        invoiceCreatedEvent.setModelYear(carResponse.getModelYear());
+        invoiceCreatedEvent.setDailyPrice(rental.getDailyPrice());
+        invoiceCreatedEvent.setTotalPrice(rental.getTotalPrice());
+        invoiceCreatedEvent.setRentedForDays(rental.getRentedForDays());
+        invoiceCreatedEvent.setRentedAt(LocalDateTime.now());
+
+        producer.sendMessage("invoice-created",invoiceCreatedEvent);
     }
 }
